@@ -1,0 +1,19 @@
+# The following have been tested under openSUSE Leap 15.4 with KDE(wayland).
+libiio  :   0.23
+octave  :   6.4.0
+bash    :   4.4.23
+
+# The following software should run on an Android device with orientation sensor (accelerometer and magnetometer).
+Sensor Stream   :   1.2 by Priyankar Kumar
+
+# The following hardware should connected to your computer.
+ADALM-Pluto :   rev.B(v0.34)
+
+# The following are used to build.
+qt-creater  :   7.0.2
+libiio-devel    :   0.23
+qt6-core-devel  :   6.3.1
+qt6-websockets-devel    :   6.3.1
+qt6-concurrent-devel    :   6.3.1
+qt6-network-devel   :   6.3.1
+g++ :   7.5.0 (or clang++ :   13.0.1)

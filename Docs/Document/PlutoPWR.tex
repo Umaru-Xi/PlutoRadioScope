@@ -1,0 +1,43 @@
+\documentclass[a4paper,20pt]{article}
+\usepackage{geometry}
+\geometry{left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm}
+\setlength{\lineskip}{0.75em}
+\setlength{\parskip}{0.75em}
+
+\title{How to exploration the radio sky}
+\author{Umaru Aya}
+\date{July 17, 2022}
+
+\begin{document}
+\maketitle
+
+\clearpage
+
+\section{Introduction}
+
+ADALM-Pluto is a self-contained RF lab which designed by Analog Devices Inc and can be used to exploration frequency between 325MHz to 3.8GHz (when open box). You can get more information at \texttt{https://www.analog.com} where there is also documentation in several languages.
+
+The official wiki of ADALM-Pluto recommends user to operate it with Mathworks Matlab or GNURadio. But for many Linux user who doesn't use the distro in Debian family, GNURadio may be install easily but gr-iio can not be set correctly. And Matlab is a profit software. The device library in this project provides the APIs of Pluto to operate libiio, a low-level library to access many ADI devices, which be maintenance saparately by myself at \texttt{https://github.com/Umaru-Xi/PlutoSDRDevice}.
+
+The orientation of antenna is very important for radio telescopte, but mechanical part is usually the hardest part for hand making. Today, many Android devices have orientation sensor (usually abstract from accelerometer and magnetometer), they can be used to measure the orientation directly. An Android application named Sensor Stream developed by Priyankar Kumar can get orientation information from your Android device by websocket protocol. That means we can bind your Android to Pluto and connect Android to our computer's network, then they will instead of the mechanical measuring equipments.
+
+GNU Octave is a free software, runs on GNU/Linux, macOS, BSD, and Microsoft Windows. It has powerful mathematics-oriented syntax with built-in 2D/3D plotting and visualization tools and drop-in compatible with many Matlab scripts.
+
+The purpose of this project is to provide an efficient way to capture the radio power distribution in the sky, without the need of various working on programing. Pluto data can be required automatically from device with IIO protocol, orientation of Andorid device binding with Pluto can be get with websocket protocol. They will be process preliminarily and sent to octave by tcp socket.
+Maxima code can be included within the
+\LaTeX{} document. When the document is processed, a file with
+extension \texttt{.mac} is generated, which can be directly processed
+by Maxima, creating another file with extension \texttt{.mxp}; when
+the \LaTeX{} document is processed again, that file will be
+automatically inserted.
+
+
+\section{A few last words}
+This is an experimental project that will probably need some amendments and additions, so any ideas or comments will be welcome.
+\\
+
+\raggedleft{Umaru Aya}\\
+\raggedleft{$<$umaru@umaru.science$>$}\\[10pt]
+
+\end{document}
+
