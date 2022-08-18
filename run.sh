@@ -1,10 +1,10 @@
 #! /bin/bash
 
 # ADALM-Pluto Config
-default_pluto_freq="2801.798673"  # in MHz
+default_pluto_freq="1420.405752"  # in MHz
 pluto_uri="ip:192.168.2.1"
-pluto_samprate="2.40" # in MHz
-pluto_bandwidth="0.26"    #in MHz
+pluto_samprate="2.10" # in MHz
+pluto_bandwidth="0.21"    #in MHz
 pluto_buffersize="4096"
 # Android Sensor Server Config
 sensor_port="5000"
@@ -12,7 +12,7 @@ sensor_port="5000"
 output_file="PlutoPWR_Output.txt"
 # Octave Server Config
 octave_server_port="5001"
-octave_img_size="16"
+octave_img_size="32"
 
 echo " "
 echo "The radio power scope based on ADALM-Pluto and Android sensors. (Umaru Aya)"
@@ -29,7 +29,7 @@ echo "img_size = ${octave_img_size};" >> ./OctaveScript/OctaveServer.m
 cat ./OctaveScript/meta_OctaveServer.m >> ./OctaveScript/OctaveServer.m
 
 echo "Launching scope..."
-killall PlutoPWR
+killall PlutoRadioScope
 killall octave
 echo "====== Information ======"
 echo "Data Info"
@@ -47,11 +47,11 @@ echo "  Client Port:            $octave_server_port"
 echo "  Image Size:             $octave_img_size x $octave_img_size"
 echo "==== ==== ==== ==== ==== "
 
-./Bin/PlutoPWR -u $pluto_uri -o $output_file -s $sensor_port -O $octave_server_port -S $pluto_samprate -f $pluto_freq -b $pluto_bandwidth -B $pluto_buffersize &
+./Bin/PlutoRadioScope -u $pluto_uri -o $output_file -s $sensor_port -O $octave_server_port -S $pluto_samprate -f $pluto_freq -b $pluto_bandwidth -B $pluto_buffersize &
 sleep 2
 octave ./OctaveScript/OctaveServer.m
 
-killall PlutoPWR
+killall PlutoRadioScope
 killall octave
 
 echo "Exit scope."
