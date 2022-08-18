@@ -15,12 +15,14 @@ fftw_plan fft_plan;
 
 int pos_x_fft, pos_y_fft, pos_xm_fft, pos_ym_fft;
 long long freq_start, freq_end, freq_inc;
+double lg10;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    lg10 = log(10);
 
     ui->fft_view->chart()->setGeometry(ui->fft_view->geometry());
     pos_x_fft = ui->fft_view->pos().x() + 30;
@@ -82,6 +84,7 @@ void MainWindow::rx_refresh()
         const double q_f = out[index][1];
         double abs_f = (i_f * i_f) + (q_f * q_f);
         abs_f = sqrt(abs_f);
+        abs_f = 10 * log(abs_f) / lg10;
         line_s->append(functions_freq_long_to_double(freq_point), abs_f);
         freq_point += freq_inc;
     }
@@ -210,7 +213,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event)
             double q_f = out[index][1];
             double abs_f = (i_f * i_f) + (q_f * q_f);
             abs_f = sqrt(abs_f);
-            abs_f = 10 * log(abs_f) / log(10);
+            abs_f = 10 * log(abs_f) / lg10;
             ui->fftamp_info->setText(QString::number(abs_f).append(" dB"));
         }
 }
